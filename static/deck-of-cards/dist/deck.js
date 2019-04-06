@@ -29,7 +29,7 @@ var Deck = (function () {
     }
   }
 
-  var transform = prefixprefix('transform');
+  var transform = prefix('transform');
   var $p = document.createElement('p');
 
   document.body.appendChild($p);
@@ -194,9 +194,9 @@ var Deck = (function () {
         var cards = _deck3.cards;
         var len = cards.length;
 
-        cards.slice(-5).reverse().forEach(function (card, i) {
+        cards.slice(-10).reverse().forEach(function (card, i) {
           card.poker(i, len, function (i) {
-            if (i === 4) {
+            if (i === 10) {
               next();
             }
           });
@@ -212,8 +212,8 @@ var Deck = (function () {
       _card3.poker = function (i, len, cb) {
         var delay = i * 250;
         var target = {
-          x: (i - 2.05) * 110,
-          y: -125
+          x: i < 5 ? (i - 2.05) * 110 : (i - 7.05) * 110,
+          y: i < 5 ? -250 : -125  
         };
 
         setTimeout(function () {
@@ -390,7 +390,7 @@ var Deck = (function () {
 
     var value = i % 13 + 1;
     var name = value === 1 ? 'A' : value === 11 ? 'J' : value === 12 ? 'Q' : value === 13 ? 'K' : value;
-    var suit = i / 13 | 0;
+    var suit = (i / 13 | 0) + 1;
     var suitName = SuitName(suit);
     var z = (52 - i) / 4;
 
@@ -630,7 +630,7 @@ var Deck = (function () {
   }
 
   function Deck(jokers) {
-    var cards = new Array(jokers ? 55 : 52);
+    var cards = new Array(jokers ? 10 : 10);
 
     var $el = createElement('div');
     var self = observable({ mount: mount, unmount: unmount, cards: cards, $el: $el });

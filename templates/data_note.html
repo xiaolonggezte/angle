@@ -13,44 +13,71 @@
     <div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <font size="10">
-                    {% if type <= 2 %}
-                        <label>你的点数</label>
-                    {% else %}
-                        <label>对家点数</label>
-                    {% endif %}
-                </font>
-            </div>
-            <div class="panel-body" align="center">
-
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <font size="10">
+                <div class="text-center">
+                    <font size="10">
                         {% if type <= 2 %}
-                            +
+                            <label>你的点数</label>
                         {% else %}
-                            -
+                            <label>对家点数</label>
                         {% endif %}
-                        </font>
-                    </span>
-                    <input type="text" id="pointIn" class="form-control" placeholder="输入你的点数" style='font-size:20px; height: 62px'>
-                </div>
-                {% if type == 2 or type == 4 %}
-                    <div class="input-group">
-                        <input type="checkbox" style="size:62px" id="checkIn">
-                        <span>
-                            <font size="10">
-                                {% if type == 2 %}
-                                    +
-                                {% else %}
-                                    -
-                                {% endif %}
-                                0
-                            </font>
-                        </span>
+                    </font>
                     </div>
-                {% endif %}
+                </div>
+            </div>
+            <div class="panel-body">
+                <div clas="row">
 
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel panel-default">
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <font size="10">
+                                    {% if type <= 2 %}
+                                        +
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                    </font>
+                                </span>
+                                <input type="text" id="pointIn" class="form-control" placeholder="输入点数" style='font-size:20px; height: 62px'>
+                            </div>
+                            {% if type == 2 or type == 4 %}
+                                <div align="center">
+                                    <div class="input-group">
+                                        <input type="checkbox" style="zoom:300%;" id="checkIn">
+                                        <span>
+                                            <font size="10">
+                                                {% if type == 2 %}
+                                                    +
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                                0
+                                            </font>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="text-danger">
+                    <h4>
+                        <ul>
+                            <li>
+                                请在结果页面填写第一次翻牌结果，该点数将从接收者账户转移到你的账户，决定你的报酬，接收者剩下的点数决定TA的报酬。(1点=人民币1元)
+                            </li>
+                            <li>
+                                你也可以选择直接勾选你的点数为+0或者对家点数-0，分配结果为你0点，对家12点。
+                            </li>
+                        </ul>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -153,7 +153,6 @@ $fan.addEventListener('click', function () {
   deck.shuffle()
   deck.shuffle()
   deck.shuffle()
-  console.log("开始");
   deck.poker()
 })
 
