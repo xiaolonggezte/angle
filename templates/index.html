@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    欢迎来到翻牌游戏
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+{#    <image src="{% static 'imags/add1.jpeg' %}"></image>#}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <img src="{% static 'imags/add2.jpeg' %}"></img>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        let time_cnt = 3;
+        $(function() {
+            window.setTimeout(wait, 1000);
+
+        });
+        function wait() {
+            if(time_cnt === 0) {
+                window.location = "{% url 'role_distribution' %}";
+            }
+            setTimeout(wait, 1000);
+            console.log(time_cnt);
+            time_cnt --;
+        }
+    </script>
+
+{% endblock %}

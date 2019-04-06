@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    example show
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'deck-of-cards/example/example.css' %}" rel="stylesheet">
+    <link href="{% static 'css/googleapis.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <div id="container"></div>
+    <div id="topbar">
+        <button id="testButton">
+            test
+        </button>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
+    <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
+    <script>
+        $('#testButton').click(function() {
+            deck.shuffle();
+            deck.sort();
+            deck.shuffle();
+            deck.fan();
+            console.log("开始");
+            deck.poker();
+        });
+    </script>
+{% endblock %}

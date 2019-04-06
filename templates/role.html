@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    欢迎来到翻牌游戏
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+<div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <img src="{% static 'imags/role.jpg' %}" style="width: 30%"></img>
+            <h3>Your Thrower</h3>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <img src="{% static 'imags/role.jpg' %}" style="width: 30%"></img>
+            <h3>Partner Recipient</h3>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        document.onkeyup = function(e) {
+            if(window.event) {
+                e = window.event;
+            }
+            let code = e.charCode || e.keyCode;
+            if(code === 13) {
+                window.location = "{% url 'poker_distribution' %}";
+            }
+        }
+    </script>
+{% endblock %}
