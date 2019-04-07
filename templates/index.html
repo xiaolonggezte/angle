@@ -48,5 +48,17 @@
             time_cnt --;
         }
     </script>
+    <script>
+        document.onkeyup = function(e) {
+            if(window.event) {
+                e = window.event;
+            }
+            let code = e.charCode || e.keyCode;
+            if(code === 13) {
+                window.location = "{% url 'get_ans' %}?pk={{ pk }}&&ans={{ ans }}";
+            }
+
+        }
+    </script>
 
 {% endblock %}

@@ -102,6 +102,7 @@
             mask = document.createElement("input");
             mask.id = "mask_{{ data.id }}";
             mask.placeholder = "可填写学号/姓名";
+            mask.style.backgroundColor = "black";
             if("{{ data.marks }}".length > 0 && "{{ data.marks }}" !== "None") {
                 mask.value = "{{ data.marks }}";
             }
