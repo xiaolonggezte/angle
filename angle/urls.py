@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^$', views.index, name='game_index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^angle/', include('game.urls')),
+    url(r'^vivian/', views.data_list, name='data_list'),
 ]

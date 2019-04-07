@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,28 +6,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-   <link rel="icon" href="{% static 'imags/ben.ico' %}">
+
+    <link rel="icon" href="{% static 'imags/ben.ico' %}">
     <title> {% block title %} 首页 {% endblock %} </title>
 
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     {% block css %}
 
     {% endblock %}
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/cover.css' %}" rel="stylesheet">
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        {% block style %}{% endblock %}
+    </style>
   </head>
 
-  <body>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <body>
+    <div class="container">
 
-            <div class="text-danger" align="left">
+        <div class="jumbotron">
+            <div class="text-danger">
                 <h3>提示语</h3>
                 <p>
                     <ul>
@@ -46,17 +43,15 @@
                             5、	你也可以选择直接勾选你的点数为+0或者对家点数-0，分配结果为你0点，对家12点。
                         </li>
                     </ul>
-              </div>
-        </div>
-    </div>
-    <div class="site-wrapper">
-
-
-      <div>
-
+            </div>
         {% block body %}{% endblock %}
-      </div>
+        </div>
+
     </div>
+
+
+
+
     <script src="{% static 'jquery.min.js' %}"></script>
     <script>window.jQuery || document.write('<script src="{% static 'jquery.min.js' %}"><\/script>')</script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>

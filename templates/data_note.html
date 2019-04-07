@@ -10,11 +10,14 @@
 
 
 {% block body %}
-    <div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="text-center">
-                    <font size="10">
+                    <font size="6">
+                        第{{ type }}组：
                         {% if type <= 2 %}
                             <label>你的点数</label>
                         {% else %}
@@ -27,7 +30,7 @@
             <div class="panel-body">
                 <div clas="row">
 
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
 
                             <div class="input-group">
@@ -65,23 +68,10 @@
                 </div>
 
             </div>
-            <div class="panel-footer">
-                <div class="text-danger">
-                    <h4>
-                        <ul>
-                            <li>
-                                请在结果页面填写第一次翻牌结果，该点数将从接收者账户转移到你的账户，决定你的报酬，接收者剩下的点数决定TA的报酬。(1点=人民币1元)
-                            </li>
-                            <li>
-                                你也可以选择直接勾选你的点数为+0或者对家点数-0，分配结果为你0点，对家12点。
-                            </li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
+
         </div>
     </div>
-
+</div>
 {% endblock %}
 {% block js %}
     <script>
@@ -103,8 +93,9 @@
     <script>
         let type = parseInt("{{ type }}");
         let data = [];
-        $('#pointIn').change(function() {
-            let val = $('#pointIn').val();
+        $('#pointIn').on("change", function(e) {
+            let val = e.delegateTarget.value;
+            console.log(val);
             data.push(val);
         })
         document.onkeyup = function(e) {
@@ -114,17 +105,39 @@
             let code = e.charCode || e.keyCode;
             if(code === 13) {
                 let is_checked = $("#checkIn").is(':checked');
+                if(data.length === 0 && !is_checked) {
+                    alert("信息输入错误");
+                    return;
+                }
+                let cnt = 0;
                 while(! ip) {
                     getIp();
+                    if(++ cnt === 5) {
+                        alert("连接网络再试!");
+                        return;
+                    }
                 }
+                console.log("ip : " + ip);
+                console.log("ans: " + "{{ ans }}");
                 console.log("is_checked: " + is_checked);
-                console.log("input_data: " + data);
-                console.log("ip :" + ip);
-                if(is_checked) {
+                console.log("input: " + data);
+                console.log("type: " + type);
 
-                } else {
+                $.post("{% url 'update_db' %}", {
+                    ip: ip,
+                    ans: "{{ ans }}",
+                    input: JSON.stringify(data),
+                    flag: is_checked,
+                    type: "{{ type }}",
+                }, function(data) {
+                    if(data === 'success') {
+                        alert("完成答卷");
+                        window.location = "{%  url 'finished' %}"
+                    } else {
+                        alert("系统出现错误, 请举手");
+                    }
+                })
 
-                }
             }
         }
         $(function() {

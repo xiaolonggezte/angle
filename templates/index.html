@@ -10,9 +10,23 @@
 
 
 {% block body %}
-    <div class="text-center">
+    <div class="text-center" style="color: white">
         <h1>欢迎进入翻牌游戏</h1>
-        <h1>第一轮</h1>
+        <h1>第{{ pk }}轮</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div align="center">
+        <h3>
+            <div>
+                Finding your partner
+
+                and Assigning
+
+                roles......
+            </div>
+        </h3>
     </div>
 
 
@@ -27,7 +41,7 @@
         });
         function wait() {
             if(time_cnt === 0) {
-                window.location = "{% url 'role_distribution' %}";
+                window.location = "{% url 'get_ans' %}?pk={{ pk }}&&ans={{ ans }}";
             }
             setTimeout(wait, 1000);
             console.log(time_cnt);

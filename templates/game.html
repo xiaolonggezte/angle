@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    翻牌程序
+    第{{ pk }}轮翻牌程序
 {% endblock %}
 
 {% block css %}
@@ -12,6 +12,9 @@
 
 
 {% block body %}
+    <div align="center" style="color:white">
+        <h3>欢迎进入翻牌游戏第{{ pk }}轮</h3>
+    </div>
     <div id="container">
         <div id="myContainer" style="z-index: 9999999; position: absolute; display: none">
             <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-225.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
@@ -56,7 +59,9 @@
 {% block js %}
     <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
+
     <script>
+        let ans = 0;
         $(function() {
             deck.intro();
             deck.sort();
@@ -73,13 +78,14 @@
             for(let i=1; i<=19; i+=2) {
                 myContainer.childNodes[i].onclick = function() {
                     myContainer.childNodes[i].style.display = "none";
-                        let ans = getAns(parseInt(Math.floor(i / 2)));
+                    ans = getAns(parseInt(Math.floor(i / 2)));
                     if(ans === "A") {
                         ans = 1;
                     } else {
                         ans = parseInt(ans);
                     }
                     console.log("ans: " + ans);
+
                     for(let j=1; j<=19;j+=2) {
                         if(j === i) {
                             continue;
@@ -97,6 +103,44 @@
                 }
             }
         }
+        document.onkeyup = function(e) {
+            if(window.event) {
+                e = window.event;
+            }
+            let code = e.charCode || e.keyCode;
+            if(code === 13) {
+                if(!ans) {
+                    alert("请翻转一张纸牌");
+                    return;
+                }
+                let ans_list = "{{ ans }}";
+                if(ans_list === "None") {
+                    ans_list = [];
+                } else {
+                    ans_list = JSON.parse(ans_list);
+                }
+                let msg = "";
+                for(let i=0; i<ans_list.length; i++) {
+                    msg += "第" + (i + 1) + "轮抽取的数为： " + ans_list[i] + "\n";
+                }
+                msg += "此轮抽取的数为: " + ans + "\n";
+                alert(msg);
+                console.log(ans_list);
+                ans_list.push(ans);
+                let pk = parseInt("{{ pk }}");
+                console.log(ans_list);
+                ans_lists = JSON.stringify(ans_list);
+                let cache = [];
+
+                {#alert("ans_list: " + ans_lists);#}
+                if(pk < 3) {
+                    window.location = "{% url 'game_index' %}?pk=" + (pk + 1) + "&&ans=" + ans_lists;
+                } else {
+                    window.location = "{% url 'data_note' %}?ans=" + ans_lists;
+                }
+            }
+        }
+
 
 
     </script>

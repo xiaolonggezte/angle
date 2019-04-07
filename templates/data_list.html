@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    后台数据
+{% endblock %}
+
+{% block css %}
+    <link href="{% static 'css/input.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>IP</th>
+                <th>创建时间</th>
+                <th>组别</th>
+                <th>第一次翻牌结果</th>
+                <th>第二次翻牌结果</th>
+                <th>第三次翻牌结果</th>
+                <th>用户输入数据</th>
+                <th>是否勾选</th>
+                <th>最终结果</th>
+                <th>备注</th>
+            </tr>
+            {% for data in datas %}
+                <tr id="tr_{{ forloop.counter }}">
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.ip }}</td>
+                    <td>{{ data.create_at |date:"Y-m-d H:i:s" }}</td>
+                    <td>
+                        第{{ data.type }}组
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        function unescapeHTML(a){
+            a = "" + a;
+            return a.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+        }
+    </script>
+    <script>
+        let new_tds;
+        let input;
+        let flag;
+        let type;
+        let tr_dom;
+        let mask, new_button;
+        let id;
+        {% for data in datas %}
+            tr_dom = document.getElementById("tr_{{ forloop.counter }}");
+            for(let i=0; i<3; i++) {
+                let new_td = document.createElement("td");
+                new_td.innerText = JSON.parse("{{ data.ans }}")[i];
+                tr_dom.appendChild(new_td);
+            }
+            new_tds = document.createElement("td");
+            input = JSON.parse(unescapeHTML("{{ data.input }}"));
+
+            for(let i=0; i<input.length; i ++) {
+                let new_span = document.createElement("span");
+                new_span.classList.add("badge");
+                new_span.innerText = input[i];
+                new_tds.appendChild(new_span);
+            }
+            tr_dom.appendChild(new_tds);
+            flag = "{{ data.flag }}";
+            type = parseInt("{{ data.type }}");
+            new_tds = document.createElement("td");
+            if(type ===1 || type === 3) {
+                new_tds.innerText = "无此功能";
+            } else {
+                if(flag === "True") {
+                    new_tds.innerHTML = "<span class='glyphicon glyphicon-ok'></span>";
+                } else {
+                    new_tds.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
+                }
+            }
+            tr_dom.appendChild(new_tds);
+
+
+            new_tds = document.createElement("td");
+            if(flag !== "True") {
+                new_tds.innerText = input[input.length - 1];
+            } else {
+                new_tds.innerText = 0;
+            }
+            tr_dom.appendChild(new_tds);
+
+            new_tds = document.createElement("td");
+            mask = document.createElement("input");
+            mask.id = "mask_{{ data.id }}";
+            mask.placeholder = "可填写学号/姓名";
+            if("{{ data.marks }}".length > 0 && "{{ data.marks }}" !== "None") {
+                mask.value = "{{ data.marks }}";
+            }
+            new_button = document.createElement("button");
+            new_button.innerText = "保存";
+            new_button.classList.add("btn", "btn-primary");
+
+            new_button.onclick = function() {
+                let id = parseInt("{{ data.id }}");
+                let val = document.getElementById("mask_" + id).value.trim();
+                console.log(id + " " + val);
+                if(!val.length || val === "") {
+                    alert("输入非法");
+                    return;
+                }
+                $.get("{% url 'alter_mask' %}?id=" + id + "&&mask="+ val, function(data) {
+                    if(data === "success") {
+                        alert("id为{{ data.id }}: 添加/修改备注成功");
+                        window.location.reload();
+                    } else {
+                        alert("id为{{ data.id }}: 添加/修改备注失败");
+                    }
+                })
+            }
+            new_tds.appendChild(mask);
+            new_tds.appendChild(new_button);
+            tr_dom.appendChild(new_tds);
+        {% endfor %}
+    </script>
+
+{% endblock %}
