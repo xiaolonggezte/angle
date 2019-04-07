@@ -12,12 +12,44 @@
 
 
 {% block body %}
-    <div id="container"></div>
-    <div id="topbar">
-        <button id="testButton">
-            test
-        </button>
+    <div id="container">
+        <div id="myContainer" style="z-index: 9999999; position: absolute; display: none">
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-225.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-115.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-5.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(104.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(214.5%, -250%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-225.5%, -125%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-115.5%, -125%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(-5.5%, -125%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="z-index: 9; transform: translate3d(104.5%, -125%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+            <div class="card hearts hearts9" style="transform: translate3d(214.5%, -125%, 0px); cursor: move; opacity: 1; transform-origin: 50% 110%;">
+                <img src="{% static 'imags/back.jpeg' %}" width="78" height="110">
+            </div>
+        <div>
+
     </div>
+    <div id="topbar">
+    </div>
+
 
 {% endblock %}
 
@@ -25,11 +57,47 @@
     <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
     <script>
-        $('#testButton').click(function() {
+        $(function() {
+            deck.intro();
             deck.sort();
             deck.fan();
+            setTimeout(function(){}, 5000);
+            deck.shuffle();
+            deck.shuffle();
+            setTimeout(myContainerShow, 5000);
             deck.poker();
+        })
+        function myContainerShow() {
+            let myContainer = document.getElementById("myContainer");
+            myContainer.style.display = "block";
+            for(let i=1; i<=19; i+=2) {
+                myContainer.childNodes[i].onclick = function() {
+                    myContainer.childNodes[i].style.display = "none";
+                        let ans = getAns(parseInt(Math.floor(i / 2)));
+                    if(ans === "A") {
+                        ans = 1;
+                    } else {
+                        ans = parseInt(ans);
+                    }
+                    console.log("ans: " + ans);
+                    for(let j=1; j<=19;j+=2) {
+                        if(j === i) {
+                            continue;
+                        }
+                        myContainer.childNodes[j].style.display = "block";
+                    }
+                }
+            }
+        }
+        function getAns(pos) {
+            let deck_dom = document.getElementsByClassName("deck")[0];
+            for(let i =0; i <10; i++) {
+                if(parseInt(deck_dom.childNodes[i].style.zIndex) === 9 + pos) {
+                    return deck_dom.childNodes[i].childNodes[2].innerText;
+                }
+            }
+        }
 
-        });
+
     </script>
 {% endblock %}

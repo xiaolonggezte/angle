@@ -210,10 +210,10 @@ var Deck = (function () {
       var $el = _card3.$el;
 
       _card3.poker = function (i, len, cb) {
-        var delay = i * 250;
+        var delay = i * 10;
         var target = {
-          x: i < 5 ? (i - 2.05) * 110 : (i - 7.05) * 110,
-          y: i < 5 ? -250 : -125  
+          x: i < 5 ? (i - 2.05) * 110 : (i - 5 - 2.05) * 110,
+          y: i < 5 ? -250 : -125,
         };
 
         setTimeout(function () {
