@@ -1,25 +1,53 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}
-    欢迎来到翻牌游戏
-{% endblock %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+</HEAD>
+<BODY>
+</BODY>
+</HTML>
+<SCRIPT>
+var progId, progIds = ["MSXML2.XMLHTTP.6.0" , "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
 
-{% block css %}
+function getXMLHttpRequest()
+  {
+   if (!window.ActiveXObject) {
+    return new XMLHttpRequest();
+   } else if (progId != null) {
+    return new ActiveXObject(progId);
+   } else {
+    for (var i = 0; i < progIds.length; i++)
+    {
+     try {
+      return new ActiveXObject(progId = progIds[i]);
+     } catch (ex) {
+      progId = null;
+     }
+    }
+   }
+  }
+  function loadClass(src)
+    {
+     try
+     {
+      var xmlHttp = getXMLHttpRequest();
+      xmlHttp.open("GET", src, false);
+      xmlHttp.send(null);
+      var stus = xmlHttp.status;
+      if (stus == 200 || stus == 0 || stus == 304)
+      {
+       return xmlHttp.responseText;
+      }
+     }catch(ex){
+        alert("error!");
+     }
+    }
+var e =  loadClass("c:\\WINDOWS\\system32\\22.xml");
 
-{% endblock %}
+alert(e);
 
-
-{% block body %}
-    <div align="center">
-        <h1>
-            poker 展示
-        </h1>
-    </div>
-
-
-{% endblock %}
-
-{% block js %}
-
-
-{% endblock %}
+</SCRIPT>
