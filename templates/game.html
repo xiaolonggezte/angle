@@ -50,12 +50,14 @@
         <div>
 
     </div>
-    <div id="topbar">
-    </div>
-
 
 {% endblock %}
 
+{% block nextButton %}
+
+    <input type="button" id="nextButton" class="btn btn-primary" value="下一步" onclick="getNext()" style="display: none;">
+
+{% endblock %}
 {% block js %}
     <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
@@ -66,17 +68,24 @@
             deck.intro();
             deck.sort();
             deck.fan();
-            setTimeout(function(){}, 5000);
-            deck.shuffle();
-            deck.shuffle();
-            setTimeout(myContainerShow, 5000);
-            deck.poker();
+            setTimeout(function() {
+                deck.shuffle();
+                deck.shuffle();
+                setTimeout(myContainerShow, 1000);
+                deck.poker();
+            }, 8000);
+
         })
         function myContainerShow() {
             let myContainer = document.getElementById("myContainer");
             myContainer.style.display = "block";
             for(let i=1; i<=19; i+=2) {
                 myContainer.childNodes[i].onclick = function() {
+                    document.getElementById("nextButton").style.display = "block";
+                    if(ans) {
+                        alert("只能翻一张牌！");
+                        return;
+                    }
                     myContainer.childNodes[i].style.display = "none";
                     ans = getAns(parseInt(Math.floor(i / 2)));
                     if(ans === "A") {
@@ -103,44 +112,37 @@
                 }
             }
         }
-        document.onkeyup = function(e) {
-            if(window.event) {
-                e = window.event;
+        function getNext() {
+            if(!ans) {
+                alert("请翻转一张纸牌");
+                return;
             }
-            let code = e.charCode || e.keyCode;
-            if(code === 13) {
-                if(!ans) {
-                    alert("请翻转一张纸牌");
-                    return;
-                }
-                let ans_list = "{{ ans }}";
-                if(ans_list === "None") {
-                    ans_list = [];
-                } else {
-                    ans_list = JSON.parse(ans_list);
-                }
-                let msg = "";
-                for(let i=0; i<ans_list.length; i++) {
-                    msg += "第" + (i + 1) + "轮抽取的数为： " + ans_list[i] + "\n";
-                }
-                msg += "此轮抽取的数为: " + ans + "\n";
-                alert(msg);
-                console.log(ans_list);
-                ans_list.push(ans);
-                let pk = parseInt("{{ pk }}");
-                console.log(ans_list);
-                ans_lists = JSON.stringify(ans_list);
-                let cache = [];
+            let ans_list = "{{ ans }}";
+            if(ans_list === "None") {
+                ans_list = [];
+            } else {
+                ans_list = JSON.parse(ans_list);
+            }
+            let msg = "";
+            for(let i=0; i<ans_list.length; i++) {
+                msg += "第" + (i + 1) + "轮抽取的数为： " + ans_list[i] + "\n";
+            }
+            msg += "此轮抽取的数为: " + ans + "\n";
+            alert(msg);
+            console.log(ans_list);
+            ans_list.push(ans);
+            let pk = parseInt("{{ pk }}");
+            console.log(ans_list);
+            ans_lists = JSON.stringify(ans_list);
+            let cache = [];
 
-                {#alert("ans_list: " + ans_lists);#}
-                if(pk < 3) {
-                    window.location = "{% url 'game_index' %}?pk=" + (pk + 1) + "&&ans=" + ans_lists;
-                } else {
-                    window.location = "{% url 'data_note' %}?ans=" + ans_lists;
-                }
+            {#alert("ans_list: " + ans_lists);#}
+            if(pk < 3) {
+                window.location = "{% url 'game_index' %}?pk=" + (pk + 1) + "&&ans=" + ans_lists;
+            } else {
+                window.location = "{% url 'data_note' %}?ans=" + ans_lists;
             }
         }
-
 
 
     </script>

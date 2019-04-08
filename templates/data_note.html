@@ -7,7 +7,18 @@
 {% block css %}
 
 {% endblock %}
-
+{% block tips %}
+    <b>
+    {% if type == 1 or type == 3 %}
+    {% elif type == 2%}
+        <li>
+            5、	你可以选择你的点数+0
+        </li>
+    {% elif type == 4 %}
+            5、你可以选择对家点数—0。
+    {% endif %}
+    </b>
+{% endblock %}
 
 {% block body %}
 <div class="row">
@@ -17,7 +28,6 @@
             <div class="panel-heading">
                 <div class="text-center">
                     <font size="6">
-                        第{{ type }}组：
                         {% if type <= 2 %}
                             <label>你的点数</label>
                         {% else %}
@@ -30,7 +40,7 @@
             <div class="panel-body">
                 <div clas="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-4">
                         <div class="panel panel-default">
 
                             <div class="input-group">
@@ -43,7 +53,7 @@
                                     {% endif %}
                                     </font>
                                 </span>
-                                <input type="text" id="pointIn" class="form-control" placeholder="输入点数" style='font-size:20px; height: 62px'>
+                                <input type="text" id="pointIn" class="form-control" placeholder="输入点数" style='font-size:20px; height: 62px; width: 100%'>
                             </div>
                             {% if type == 2 or type == 4 %}
                                 <div align="center">
@@ -71,6 +81,13 @@
 
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+
+    <button onclick="getNext()" class="btn btn-primary">
+        提交
+    </button>
 </div>
 {% endblock %}
 {% block js %}
@@ -98,51 +115,55 @@
             console.log(val);
             data.push(val);
         })
-        document.onkeyup = function(e) {
-            if(window.event) {
-                e = window.event;
-            }
-            let code = e.charCode || e.keyCode;
-            if(code === 13) {
-                let is_checked = $("#checkIn").is(':checked');
-                if(data.length === 0 && !is_checked) {
-                    alert("信息输入错误");
-                    return;
-                }
-                let cnt = 0;
-                while(! ip) {
-                    getIp();
-                    if(++ cnt === 5) {
-                        alert("连接网络再试!");
-                        return;
-                    }
-                }
-                console.log("ip : " + ip);
-                console.log("ans: " + "{{ ans }}");
-                console.log("is_checked: " + is_checked);
-                console.log("input: " + data);
-                console.log("type: " + type);
 
-                $.post("{% url 'update_db' %}", {
-                    ip: ip,
-                    ans: "{{ ans }}",
-                    input: JSON.stringify(data),
-                    flag: is_checked,
-                    type: "{{ type }}",
-                }, function(data) {
-                    if(data === 'success') {
-                        alert("完成答卷");
-                        window.location = "{%  url 'finished' %}"
-                    } else {
-                        alert("系统出现错误, 请举手");
-                    }
-                })
-
-            }
-        }
         $(function() {
             if(!ip) {
                 getIp();
+            }
+        })
+        function getNext() {
+            let is_checked = $("#checkIn").is(':checked');
+            if(data.length === 0 && !is_checked) {
+                alert("信息输入错误");
+                return;
+            }
+            let cnt = 0;
+            while(! ip) {
+                getIp();
+                if(++ cnt === 5) {
+                    alert("连接网络再试!");
+                    return;
+                }
+            }
+            console.log("ip : " + ip);
+            console.log("ans: " + "{{ ans }}");
+            console.log("is_checked: " + is_checked);
+            console.log("input: " + data);
+            console.log("type: " + type);
+
+            $.post("{% url 'update_db' %}", {
+                ip: ip,
+                ans: "{{ ans }}",
+                input: JSON.stringify(data),
+                flag: is_checked,
+                type: "{{ type }}",
+            }, function(data) {
+                if(data === 'success') {
+                    alert("完成答卷");
+                    window.location = "{%  url 'finished' %}"
+                } else {
+                    alert("系统出现错误, 请举手");
+                }
+            })
+        }
+    </script>
+    <script>
+        $('#checkIn').change(function () {
+            let is_checked = $("#checkIn").is(':checked');
+            if(is_checked) {
+                document.getElementById("pointIn").disabled = "disabled";
+            } else {
+                document.getElementById("pointIn").disabled = "";
             }
         })
     </script>

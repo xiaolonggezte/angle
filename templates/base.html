@@ -20,11 +20,21 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="{% static 'js/ie8-responsive-file-warning.js' %}"></script><![endif]-->
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+
+
+    <![endif]-->
   </head>
 
   <body>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-7 col-md-offset-3">
 
             <div class="text-danger" align="left">
                 <h3>提示语</h3>
@@ -34,7 +44,7 @@
                             1、	欢迎参加今天的系统测试，为提升参与者的认真程度，本次测试的费用由翻牌游戏结果决定。
                         </li>
                         <li>
-                            2、	我们随机将参与者角色分为投掷者或接收者，你分配到的角色是投掷者。有一位接收者与你配对，他目前账户的点数为12，你的账户点数为0。
+                            2、	我们随机将参与者角色分为投掷者或接收者，你分配到的角色是投掷者。有一位接收者与你配对，TA目前账户的点数为10，你的账户点数为0。
                         </li>
                         <li>
                             3、	进入翻牌游戏后，你需要选择10张牌中抽取1张，这张牌的点数是本轮结果，一共需要抽取3次。
@@ -42,9 +52,8 @@
                         <li>
                             4、	请在结果页面填写<b>第一次翻牌结果</b>，该点数将从接收者账户转移到你的账户，决定你的报酬，接收者剩下的点数决定TA的报酬。(1点=人民币1元)
                         </li>
-                        <li>
-                            5、	你也可以选择直接勾选你的点数为+0或者对家点数-0，分配结果为你0点，对家12点。
-                        </li>
+                        {% block tips %}
+                        {% endblock %}
                     </ul>
               </div>
         </div>
@@ -56,7 +65,36 @@
 
         {% block body %}{% endblock %}
       </div>
+
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div align="center">
+        {% block nextButton %}{% endblock %}
+    </div>
+
     <script src="{% static 'jquery.min.js' %}"></script>
     <script>window.jQuery || document.write('<script src="{% static 'jquery.min.js' %}"><\/script>')</script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
