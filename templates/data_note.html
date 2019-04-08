@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     欢迎来到翻牌游戏
 {% endblock %}
@@ -92,6 +92,7 @@
 {% endblock %}
 {% block js %}
     <script>
+
         let ip = 0;
         function getIp() {
             $.ajax({
@@ -166,5 +167,9 @@
                 document.getElementById("pointIn").disabled = "";
             }
         })
+    </script>
+
+    <script>
+
     </script>
 {% endblock %}

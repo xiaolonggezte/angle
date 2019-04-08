@@ -140,7 +140,7 @@
             if(pk < 3) {
                 window.location = "{% url 'game_index' %}?pk=" + (pk + 1) + "&&ans=" + ans_lists;
             } else {
-                window.location = "{% url 'data_note' %}?ans=" + ans_lists;
+                window.location = "{% url 'data_note' %}?ans=" + ans_lists + "&&group_type={{ group_type }}";
             }
         }
 

@@ -25,7 +25,7 @@ def cards_show(request):
 def card_example(request):
     pk = request.GET.get('pk')
     ans = request.GET.get('ans')
-    return render(request, 'game.html', {'pk': pk, 'ans': ans})
+    return render(request, 'game.html', {'pk': pk, 'ans': ans, 'group_type': GROUP_TYPE_CNT})
 
 
 def role_distribution(request):
@@ -41,11 +41,11 @@ def poker_distribution(request):
 
 
 def data_note(request):
-    group_type = GROUP_TYPE_CNT % 4 + 1
+    group_type = request.GET.get('group_type')
     global GROUP_TYPE_CNT
     GROUP_TYPE_CNT = GROUP_TYPE_CNT + 1
     ans = request.GET.get('ans')
-    return render(request, 'data_note.html', {'type': group_type, 'ans': ans})
+    return render(request, 'data_note.html', {'type': int(group_type) % 4 + 1, 'group_type': group_type, 'ans': ans})
 
 
 @csrf_exempt
