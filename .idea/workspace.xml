@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f0e94fd-62ea-48b5-8bcd-7eb886d5d64d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/templates/data_note.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/data_note.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/poker_distribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poker_distribution.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/data_note.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+            <state relative-caret-position="1194">
+              <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -104,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/poker_distribution.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+            <state relative-caret-position="424">
+              <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -113,11 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/game.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2698">
+            <state relative-caret-position="548">
               <caret line="142" column="104" selection-start-line="142" selection-start-column="104" selection-end-line="142" selection-end-column="104" />
-              <folding>
-                <element signature="e#3306#3329#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -143,6 +141,7 @@
       <find>”</find>
       <find>’</find>
       <find>callback</find>
+      <find>var ser</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -180,8 +179,8 @@
         <option value="$PROJECT_DIR$/angle/settings.py" />
         <option value="$PROJECT_DIR$/game/views.py" />
         <option value="$PROJECT_DIR$/static/js/get-ip.js" />
-        <option value="$PROJECT_DIR$/templates/data_note.html" />
         <option value="$PROJECT_DIR$/game/utils.py" />
+        <option value="$PROJECT_DIR$/templates/data_note.html" />
         <option value="$PROJECT_DIR$/templates/poker_distribution.html" />
       </list>
     </option>
@@ -333,12 +332,12 @@
       <workItem from="1554537279316" duration="20024000" />
       <workItem from="1554601575177" duration="31567000" />
       <workItem from="1554682060768" duration="14662000" />
-      <workItem from="1554719347901" duration="1733000" />
+      <workItem from="1554719347901" duration="3285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82077000" />
+    <option name="totallyTimeSpent" value="83629000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
@@ -662,27 +661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2698">
-          <caret line="142" column="104" selection-start-line="142" selection-start-column="104" selection-end-line="142" selection-end-column="104" />
-          <folding>
-            <element signature="e#3306#3329#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/data_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
           <caret line="104" column="47" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/data_note.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -703,10 +685,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="142" column="104" selection-start-line="142" selection-start-column="104" selection-end-line="142" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/data_note.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1194">
+          <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/poker_distribution.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+        <state relative-caret-position="424">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
         </state>
       </provider>
     </entry>
