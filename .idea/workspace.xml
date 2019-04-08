@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f0e94fd-62ea-48b5-8bcd-7eb886d5d64d" name="Default Changelist" comment="" />
+    <list default="true" id="5f0e94fd-62ea-48b5-8bcd-7eb886d5d64d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/angle/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/angle/settings.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="537">
-              <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+              <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -57,11 +59,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/data_note.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="138">
               <caret line="39" column="34" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="34" />
               <folding>
                 <element signature="e#1652#1700#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/angle/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -75,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/game.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
               <folding>
                 <element signature="e#3306#3329#0#HTML" expanded="true" />
               </folding>
@@ -122,7 +133,6 @@
         <option value="$PROJECT_DIR$/static/deck-of-cards/dist/deck.js" />
         <option value="$PROJECT_DIR$/templates/example.html" />
         <option value="$PROJECT_DIR$/static/deck-of-cards/example/example.js" />
-        <option value="$PROJECT_DIR$/angle/settings.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/db1d8ca4-ace4-4d8e-889b-ffb423088e62/console_1.sql" />
         <option value="$PROJECT_DIR$/game/admin.py" />
         <option value="$PROJECT_DIR$/angle/__init__.py" />
@@ -134,12 +144,13 @@
         <option value="$PROJECT_DIR$/static/css/input.css" />
         <option value="$PROJECT_DIR$/templates/finished.html" />
         <option value="$PROJECT_DIR$/templates/data_list.html" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/deck-of-cards/example/example.css" />
         <option value="$PROJECT_DIR$/templates/game.html" />
         <option value="$PROJECT_DIR$/templates/data_note.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/angle/settings.py" />
       </list>
     </option>
   </component>
@@ -193,6 +204,19 @@
             <path>
               <item name="angle" type="b2602c69:ProjectViewProjectNode" />
               <item name="angle" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="deck-of-cards-master20150917" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="angle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="angle" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="deck-of-cards-master20150917" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="angle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="angle" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -211,10 +235,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/static/js" />
       <recent name="$PROJECT_DIR$/static/css" />
       <recent name="$PROJECT_DIR$/static/imags" />
-      <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -269,17 +293,18 @@
       <workItem from="1554532297422" duration="460000" />
       <workItem from="1554537279316" duration="20024000" />
       <workItem from="1554601575177" duration="31567000" />
-      <workItem from="1554682060768" duration="5756000" />
+      <workItem from="1554682060768" duration="6687000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71438000" />
+    <option name="totallyTimeSpent" value="72369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12713675" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12713675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -293,7 +318,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.33054394" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.33054394" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3294979" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -329,13 +354,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/js/npm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="28" lean-forward="true" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -471,13 +489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/angle/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1558">
@@ -516,16 +527,6 @@
           <folding>
             <element signature="e#303#322#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="2" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -617,7 +618,7 @@
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="537">
-          <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -628,9 +629,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/data_note.html">
+    <entry file="file://$PROJECT_DIR$/templates/game.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#3306#3329#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/deck-of-cards-master20150917/css/card.styl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="95">
+            <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/data_note.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
           <caret line="39" column="34" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="34" />
           <folding>
             <element signature="e#1652#1700#0#HTML" expanded="true" />
@@ -638,13 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/game.html">
+    <entry file="file://$PROJECT_DIR$/angle/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#3306#3329#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="205">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="50" />
         </state>
       </provider>
     </entry>
