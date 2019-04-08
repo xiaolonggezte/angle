@@ -1,53 +1,54 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-<TITLE> New Document </TITLE>
-<META NAME="Generator" CONTENT="EditPlus">
-<META NAME="Author" CONTENT="">
-<META NAME="Keywords" CONTENT="">
-<META NAME="Description" CONTENT="">
-</HEAD>
-<BODY>
-</BODY>
-</HTML>
-<SCRIPT>
-var progId, progIds = ["MSXML2.XMLHTTP.6.0" , "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+<html>
+ <head>
+ <title>WMI Scripting HTML</title>
+ <script FOR="foo" EVENT="OnCompleted(hResult,pErrorObject, pAsyncContext)" LANGUAGE="JScript">
 
-function getXMLHttpRequest()
-  {
-   if (!window.ActiveXObject) {
-    return new XMLHttpRequest();
-   } else if (progId != null) {
-    return new ActiveXObject(progId);
-   } else {
-    for (var i = 0; i < progIds.length; i++)
-    {
-     try {
-      return new ActiveXObject(progId = progIds[i]);
-     } catch (ex) {
-      progId = null;
-     }
-    }
-   }
-  }
-  function loadClass(src)
-    {
-     try
-     {
-      var xmlHttp = getXMLHttpRequest();
-      xmlHttp.open("GET", src, false);
-      xmlHttp.send(null);
-      var stus = xmlHttp.status;
-      if (stus == 200 || stus == 0 || stus == 304)
-      {
-       return xmlHttp.responseText;
-      }
-     }catch(ex){
-        alert("error!");
-     }
-    }
-var e =  loadClass("c:\\WINDOWS\\system32\\22.xml");
+             document.forms[0].txtMACAddr.value=unescape(MACAddr);
+             document.forms[0].txtIPAddr.value=unescape(IPAddr);
+             document.forms[0].txtDNSName.value=unescape(sDNSName);
+             //document.formbar.submit();
+        </script>
 
-alert(e);
+ <script FOR="foo" EVENT="OnObjectReady(objObject,objAsyncContext)" LANGUAGE="JScript">
 
-</SCRIPT>
+         if(objObject.IPEnabled != null && objObject.IPEnabled != "undefined" && objObject.IPEnabled == true)
+                  {
+
+                   if(objObject.MACAddress != null && objObject.MACAddress != "undefined")
+                         MACAddr = objObject.MACAddress;
+
+                   if(objObject.IPEnabled && objObject.IPAddress(0) != null && objObject.IPAddress(0) != "undefined")
+                         IPAddr = objObject.IPAddress(0);
+
+                   if(objObject.DNSHostName != null && objObject.DNSHostName != "undefined")
+                      sDNSName = objObject.DNSHostName;
+
+                   }
+        </script>
+ </head>
+ <body>
+  <object classid="CLSID:76A64158-CB41-11D1-8B02-00600806D9B6" id="locator" VIEWASTEXT>
+  </object>
+  <object classid="CLSID:75718C9A-F029-11d1-A1AC-00C04FB6C223" id="foo">
+  </object>
+
+  <script LANGUAGE="JScript">
+               var service = locator.ConnectServer();
+               var MACAddr ;
+               var IPAddr ;
+               var DomainAddr;
+               var sDNSName;
+               service.Security_.ImpersonationLevel=3;
+               service.InstancesOfAsync(foo, 'Win32_NetworkAdapterConfiguration');
+         </script>
+
+
+  <form method="POST" action="NICPost.asp" id="formfoo" name="formbar">
+
+   <input type=text  name="txtMACAddr">
+   <input type=text  name="txtIPAddr">
+   <input type=text  name="txtDNSName">
+
+  </form>
+ </body>
+</html>
