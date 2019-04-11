@@ -213,7 +213,7 @@
             }, function(data) {
                 if(data === 'success') {
                     alert("完成答卷");
-                    window.location = "{%  url 'finished' %}"
+                    window.location = "{%  url 'finished' %}?type={{ type }}"
                 } else {
                     alert("系统出现错误, 请举手");
                 }

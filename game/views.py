@@ -7,12 +7,14 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from game.models import DataModel
-GROUP_TYPE_CNT = 0
 
 
-def index(request):
+def index(request, type_id):
+    type_id = int(type_id)
+    if type_id < 1 or type_id > 4:
+        return render(request, 'error.html', {})
     return render(request, 'index.html', {
-        'type': GROUP_TYPE_CNT % 4 + 1,
+        'type': type_id,
     })
 
 
@@ -41,8 +43,6 @@ def poker_distribution(request):
 
 def data_note(request):
     group_type = request.GET.get('type')
-    global GROUP_TYPE_CNT
-    GROUP_TYPE_CNT = GROUP_TYPE_CNT + 1
     ans = request.GET.get('ans')
     return render(request, 'data_note.html', {
         'type': int(group_type) if group_type else 1,

@@ -5,7 +5,7 @@ from game import views
 urlpatterns = patterns(
     'game.views',
     url(r'^card/', views.card_example, name='get_ans'),
-    url(r'^$', views.index, name='game_index'),
+    url(r'^(?P<type_id>[0-9]+)$', views.index, name='game_index'),
     url(r'^show$', views.cards_show, name='cards_show'),
     url(r'^wait/role_distribution/', views.role_distribution, name='role_distribution'),
     url(r'^wait/role/', views.role, name='role'),

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    完成
+    error
 {% endblock %}
 
 {% block css %}
@@ -21,17 +21,12 @@
 
 
         <h1>
-            已完成翻牌游戏！
+            网址输入有误，请联系管理员。
         </h1>
         <br>
         <br>
         <br>
 
-        <div style="color: blue">
-            <p class="lead">
-              <a href="{% url 'game_index' type %}" class="btn btn-lg btn-default">回到首页</a>
-            </p>
-        </div>
     </div>
 
 {% endblock %}
