@@ -19,14 +19,14 @@
     {% endif %}
     </b>
 {% endblock %}
-
 {% block body %}
+<div style="margin-top: 15%">
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="text-center">
+        <div>
+            <div class="text-center text-primary">
+                <div class="text-center" style="">
                     <font size="6">
                         {% if type <= 2 %}
                             <label>你的点数</label>
@@ -34,7 +34,6 @@
                             <label>对家点数</label>
                         {% endif %}
                     </font>
-                    </div>
                 </div>
             </div>
             <div class="panel-body">
@@ -44,7 +43,7 @@
                         <div class="panel panel-default">
 
                             <div class="input-group">
-                                <span class="input-group-addon">
+                                <span class="input-group-addon" style="color: black">
                                     <font size="10">
                                     {% if type <= 2 %}
                                         +
@@ -56,19 +55,18 @@
                                 <input type="text" id="pointIn" class="form-control" placeholder="输入点数" style='font-size:20px; height: 62px; width: 100%'>
                             </div>
                             {% if type == 2 or type == 4 %}
-                                <div align="center">
-                                    <div class="input-group">
-                                        <input type="checkbox" style="zoom:300%;" id="checkIn">
-                                        <span>
+                                <div class="input-group" align="center" onclick="solve()">
+
+                                    <div class="input-group-addon" style="color: black">
                                             <font size="10">
-                                                {% if type == 2 %}
-                                                    +
-                                                {% else %}
-                                                    -
-                                                {% endif %}
-                                                0
+                                            {% if type == 2 %}
+                                                +
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                            1
                                             </font>
-                                        </span>
+
                                     </div>
                                 </div>
                             {% endif %}
@@ -80,14 +78,17 @@
             </div>
 
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
 
-    <button onclick="getNext()" class="btn btn-primary">
-        提交
-    </button>
+        <br>
+        <br>
+        <br>
+        <button onclick="getNext()" class="btn btn-primary">
+            提交
+        </button>
+    </div>
+
+
+</div>
 </div>
 {% endblock %}
 {% block js %}
@@ -177,8 +178,14 @@
                 getIp();
             }
         })
+        let is_checked;
+        function solve() {
+            is_checked = true;
+            document.getElementById("pointIn").disabled = "disabled";
+            getNext();
+        }
         function getNext() {
-            let is_checked = $("#checkIn").is(':checked');
+
             if(data.length === 0 && !is_checked) {
                 alert("信息输入错误");
                 return;
@@ -214,14 +221,7 @@
         }
     </script>
     <script>
-        $('#checkIn').change(function () {
-            let is_checked = $("#checkIn").is(':checked');
-            if(is_checked) {
-                document.getElementById("pointIn").disabled = "disabled";
-            } else {
-                document.getElementById("pointIn").disabled = "";
-            }
-        })
+
     </script>
 
     <script>

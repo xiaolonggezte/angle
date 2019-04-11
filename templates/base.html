@@ -33,38 +33,12 @@
   </head>
 
   <body>
-    <div class="row">
-        <div class="col-md-7 col-md-offset-3">
 
-            <div class="text-danger" align="left">
-                <h3>提示语</h3>
-                <p>
-                    <ul>
-                        <li>
-                            1、	欢迎参加今天的系统测试，为提升参与者的认真程度，本次测试的费用由翻牌游戏结果决定。
-                        </li>
-                        <li>
-                            2、	我们随机将参与者角色分为投掷者或接收者，你分配到的角色是投掷者。有一位接收者与你配对，TA目前账户的点数为10，你的账户点数为0。
-                        </li>
-                        <li>
-                            3、	进入翻牌游戏后，你需要选择10张牌中抽取1张，这张牌的点数是本轮结果，一共需要抽取3次。
-                        </li>
-                        <li>
-                            4、	请在结果页面填写<b>第一次翻牌结果</b>，该点数将从接收者账户转移到你的账户，决定你的报酬，接收者剩下的点数决定TA的报酬。(1点=人民币1元)
-                        </li>
-                        {% block tips %}
-                        {% endblock %}
-                    </ul>
-              </div>
-        </div>
-    </div>
     <div class="site-wrapper">
-
-
-      <div>
+        <div>
 
         {% block body %}{% endblock %}
-      </div>
+        </div>
 
     </div>
     <br>
@@ -88,9 +62,16 @@
     <br>
     <br>
     <br>
+    <br><br>
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
     <div align="center">
         {% block nextButton %}{% endblock %}
     </div>

@@ -11,16 +11,62 @@
 
 {% block body %}
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <div class="text-center" style="color: white">
-        <h1>欢迎进入翻牌游戏</h1>
-        <h1>第{{ pk }}轮</h1>
+    <div class="text-center" style="color: white; margin-top: 10%">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" align="left" style="color: red; font-size: 18px;">
+                <div class="text-center">
+                    <h2>提示语</h2>
+                    <br>
+                </div>
+                <ul>
+                    <p>
+                        1、欢迎参加翻牌游戏，报酬由游戏结果决定。
+                    </p>
+                    <p>
+                        2、我们随机将参与者角色分为投掷者或接受者，你分配到的角色是投掷者。有一位接受者与你配对，TA目前的账户点数为10，你的账户点数为0。
+                    </p>
+                    <p>
+                        3、进入翻牌游戏后，你需要从10张背面排列的牌（点数从1到10）中选取任意1张，这张牌将会翻转并显示点数。
+                    </p>
+                    {% if type == 1 %}
+                    <p>
+                        <strong>
+                            4、请在结果页面填写翻牌点数，该点数将从对家账户转移到你的账户，决定你的报酬；对家账户的剩余点数决定TA的报酬。(1点=人民币1元)
+                        </strong>
+                    </p>
+                    {% elif type == 2 %}
+                    <p>
+                        <strong>
+                            4、请在结果页面填写翻牌点数，该点数将从对家账户转移到你的账户，决定你的报酬；对家账户的剩余点数决定TA的报酬。(1点=人民币1元)。
+                        </strong>
+                    </p>
+                    <p>
+                        <strong>
+                            5、你也可以不填写翻牌点数，直接点击“你的点数：+1”，分配结果为你1点，对家9点。
+                        </strong>
+                    </p>
+                    {% elif type == 3 %}
+                    <p>
+                        <strong>
+                            4、请在结果页面填写翻牌点数，即：对家需要转移到你的账户的点数，这将决定你的报酬；对家账户的剩余点数决定TA的报酬。(1点=人民币1元)
+                        </strong>
+                    </p>
+                    {% elif type == 4%}
+                    <p>
+                        <strong>
+                            4、请在结果页面填写翻牌点数，即：对家需要转移到你的账户的点数，这将决定你的报酬；对家账户的剩余点数决定TA的报酬。(1点=人民币1元)
+                        </strong>
+                    </p>
+                    <p>
+                        <strong>
+                            5、你也可以不填写翻牌点数，直接点击“对家点数﹣1”，分配结果为对家9点，你1点。
+                        </strong>
+                    </p>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
 
     <br>
@@ -32,9 +78,13 @@
 
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <button class="btn btn-primary" onclick="getNext()">
-                下一步
-            </button>
+            <div class="form-group" style="">
+                <input type="checkbox" onclick="getNext()" style="zoom: 120%; color:black">
+                <label style="font-size:20px;" onclick="getNext()">
+                    我已阅读知晓。
+                </label>
+            </div>
+
         </div>
     </div>
 
@@ -44,7 +94,7 @@
 {% block js %}
     <script>
         function getNext() {
-            window.location = "{% url 'get_ans' %}?pk={{ pk }}&&ans={{ ans }}";
+            window.location = "{% url 'get_ans' %}?type={{ type }}";
         }
     </script>
 

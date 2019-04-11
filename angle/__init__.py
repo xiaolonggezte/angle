@@ -1,2 +1,2 @@
-GROUP_TYPE_CNT = 0
+
 
