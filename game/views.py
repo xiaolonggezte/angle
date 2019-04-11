@@ -67,7 +67,10 @@ def update_db(request):
 
 
 def finished(request):
-    return render(request, 'finished.html', {})
+    type_id = request.GET.get('type')
+    return render(request, 'finished.html', {
+        'type': int(type_id),
+    })
 
 
 def data_list(request):
