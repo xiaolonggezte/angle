@@ -1,62 +1,79 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    </head>
-    <body>
-        <script>
-        var RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
-        if (RTCPeerConnection) (function () {
-            var rtc = new RTCPeerConnection({iceServers:[]});
-            if (1 || window.mozRTCPeerConnection) {
-                rtc.createDataChannel('', {reliable:false});
-            };
-
-            rtc.onicecandidate = function (evt) {
-                if (evt.candidate) grepSDP("a="+evt.candidate.candidate);
-            };
-            rtc.createOffer(function (offerDesc) {
-                grepSDP(offerDesc.sdp);
-                rtc.setLocalDescription(offerDesc);
-            }, function (e) { console.warn("offer failed", e); });
 
 
-            var addrs = Object.create(null);
-            addrs["0.0.0.0"] = false;
-            function updateDisplay(newAddr) {
-                if (newAddr in addrs) return;
-                else addrs[newAddr] = true;
-                var displayAddrs = Object.keys(addrs).filter(function (k) { return addrs[k]; });
-                for(var i = 0; i < displayAddrs.length; i++){
-                    if(displayAddrs[i].length > 16){
-                        displayAddrs.splice(i, 1);
-                        i--;
-                    }
-                }
-                console.log(displayAddrs[0]);      //打印出内网ip
 
-            }
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    欢迎来到翻牌游戏
+{% endblock %}
 
-            function grepSDP(sdp) {
-                var hosts = [];
-                sdp.split('\r\n').forEach(function (line, index, arr) {
-                   if (~line.indexOf("a=candidate")) {
-                        var parts = line.split(' '),
-                            addr = parts[4],
-                            type = parts[7];
-                        if (type === 'host') updateDisplay(addr);
-                    } else if (~line.indexOf("c=")) {
-                        var parts = line.split(' '),
-                            addr = parts[2];
-                        updateDisplay(addr);
-                    }
-                });
-            }
-        })();
-        else{
-            alert("获取内网ip失败：请使用主流浏览器：chrome,firefox,opera,safari");
-        }
+{% block css %}
 
-        </script>
-    </body>
-</html>
+{% endblock %}
+
+
+{% block body %}
+<div class="panel panel-primary ">
+    <div class="panel-heading">
+        <div class="text-center">
+            <font size="10">
+                选择角色
+            </font>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <img src="{% static 'imags/role.jpg' %}" style="width: 30%"></img>
+                <div style="color: blue">
+                    <h3>Your Thrower</h3>
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <img src="{% static 'imags/role.jpg' %}" style="width: 30%"></img>
+                <div style="color: blue">
+                    <h3>Partner Recipient</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div align="center" style="color: red">
+            <h2>
+                <div>
+                    Finding your partner
+                </div>
+                <div>
+                    and Assigning
+                </div>
+                <div>
+                    roles......
+                </div>
+            </h2>
+        </div>
+    </div>
+
+</div>
+<div id="div_Bg"></div>
+    <div id="title"></div>
+
+{% endblock %}
+
+{% block js %}
+    <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+    <script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
+    <script>
+
+
+    </script>
+    <script>
+        $(function() {
+            swal("开始");
+        })
+    </script>
+{% endblock %}

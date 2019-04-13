@@ -52,22 +52,23 @@
                                     {% endif %}
                                     </font>
                                 </span>
-                                <input type="text" id="pointIn" class="form-control" placeholder="输入点数" style='font-size:20px; height: 62px; width: 100%'>
+                                <input type="text" id="pointIn" class="form-control" placeholder="翻牌点数" style='font-size:20px; height: 62px; width: 100%'>
                             </div>
                             {% if type == 2 or type == 4 %}
-                                <div class="input-group" align="center" onclick="solve()">
+                                <div class="input-group" onclick="solve()" style="color: black" id="addition">
+                                    <span class="input-group-addon" align="left" id="sub" style="color: black">
+                                        <font size="10">
+                                        {% if type == 2 %}
+                                            +
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                        </font>
 
-                                    <div class="input-group-addon" style="color: black">
-                                            <font size="10">
-                                            {% if type == 2 %}
-                                                +
-                                            {% else %}
-                                                -
-                                            {% endif %}
-                                            1
-                                            </font>
-
-                                    </div>
+                                    </span>
+                                    <span align="center">
+                                        <font size="10">1</font>
+                                    </span>
                                 </div>
                             {% endif %}
                         </div>
@@ -82,7 +83,7 @@
         <br>
         <br>
         <br>
-        <button onclick="getNext()" class="btn btn-primary">
+        <button id="main_button" onclick="getNext()" class="btn btn-primary">
             提交
         </button>
     </div>
@@ -165,28 +166,72 @@
         getIp();
     </script>
     <script>
+        window.alert = function(name){
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display="none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        };
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+    <script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
+    <script>
         let type = parseInt("{{ type }}");
         let data = [];
-        $('#pointIn').on("change", function(e) {
+        //防抖函数
+        function debounce(fn,delay){
+
+            let delays=delay||500;
+            let timer;
+            return function(){
+                let th=this;
+                let args=arguments;
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer=setTimeout(function () {
+                        timer=null;
+                        fn.apply(th,args);
+                }, delays);
+            };
+        }
+        $('#pointIn').on("input", debounce(function(e) {
             let val = e.delegateTarget.value;
+            val = parseInt(val);
             console.log(val);
-            data.push(val);
-        })
+            if(!isNaN(val)) {
+                data.push(val);
+
+            }
+        }))
 
         $(function() {
             if(!ip) {
                 getIp();
             }
         })
-        let is_checked;
+        let is_checked = false;
         function solve() {
-            is_checked = true;
-            document.getElementById("pointIn").disabled = "disabled";
-            getNext();
+            is_checked = !is_checked;
+            if(is_checked) {
+                document.getElementById("pointIn").disabled = "disabled";
+                document.getElementById("addition").style.color = "red";
+                document.getElementById("sub").style.color = "red";
+
+            } else {
+                document.getElementById("pointIn").disabled = "";
+                document.getElementById("addition").style.color = "black";
+                document.getElementById("sub").style.color = "black";
+
+            }
+
         }
         function getNext() {
-
+            document.getElementById("main_button").disabled = "disabled";
             if(data.length === 0 && !is_checked) {
+                document.getElementById("main_button").disabled = "";
                 alert("信息输入错误");
                 return;
             }
@@ -194,6 +239,7 @@
             while(! ip) {
                 getIp();
                 if(++ cnt === 5) {
+                    document.getElementById("main_button").disabled = "";
                     alert("连接网络再试!");
                     return;
                 }
@@ -212,9 +258,13 @@
                 type: "{{ type }}",
             }, function(data) {
                 if(data === 'success') {
-                    alert("完成答卷");
-                    window.location = "{%  url 'finished' %}?type={{ type }}"
+                    swal("完成答卷");
+                    setTimeout(function(){
+                        window.location = "{%  url 'finished' %}?type={{ type }}"
+                    }, 2000);
+
                 } else {
+                    document.getElementById("main_button").disabled = "";
                     alert("系统出现错误, 请举手");
                 }
             })

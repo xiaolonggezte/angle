@@ -60,11 +60,17 @@
         let id;
         {% for data in datas %}
             tr_dom = document.getElementById("tr_{{ forloop.counter }}");
+            flag = "{{ data.flag }}";
+
             for(let i=0; i<3; i++) {
                 let new_td = document.createElement("td");
-                new_td.innerText = JSON.parse("{{ data.ans }}")[i];
+                if(flag === "False") {
+                    new_td.innerText = JSON.parse("{{ data.ans }}")[i];
+
+                }
                 tr_dom.appendChild(new_td);
             }
+
             new_tds = document.createElement("td");
             input = JSON.parse(unescapeHTML("{{ data.input }}"));
 
@@ -75,7 +81,7 @@
                 new_tds.appendChild(new_span);
             }
             tr_dom.appendChild(new_tds);
-            flag = "{{ data.flag }}";
+
             type = parseInt("{{ data.type }}");
             new_tds = document.createElement("td");
             if(type ===1 || type === 3) {

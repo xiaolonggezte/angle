@@ -126,6 +126,7 @@
             {#msg += "此轮抽取的数为: " + ans + "\n";#}
             {#alert(msg);#}
             {#console.log(ans_list);#}
+            ans = parseInt(ans);
             ans_list.push(ans);
             let pk = parseInt("{{ pk }}");
             console.log(ans_list);
