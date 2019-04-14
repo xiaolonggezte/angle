@@ -62,10 +62,14 @@
 {% block js %}
     <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'sweetalert/css/sweetalert.css' %}">
+    <script type="text/javascript" src="{% static 'sweetalert/js/sweetalert.js' %}"></script>
     <script>
+        let is_cheat = 0;
         let ans = 0;
         $(function() {
+            let refer = document.referrer;
+            console.log(refer);
             deck.intro();
             deck.sort();
             deck.fan();
@@ -75,7 +79,17 @@
                 setTimeout(myContainerShow, 1000);
                 deck.poker();
             }, 8000);
+            //检测是否刷新。监测是否作弊
+            if (window.performance) {
+              console.info("window.performance works fine on this browser");
+            }
+          　if (performance.navigation.type == 1) {
+                console.info( "This page is reloaded" );
+                is_cheat = 1;
 
+           　} else {
+                console.info( "This page is not reloaded");
+              }
         })
         function myContainerShow() {
             let myContainer = document.getElementById("myContainer");
@@ -84,7 +98,7 @@
                 myContainer.childNodes[i].onclick = function() {
                     document.getElementById("nextButton").style.display = "block";
                     if(ans) {
-                        alert("只能翻一张牌！");
+                        swal("只能翻一张牌！");
                         return;
                     }
                     myContainer.childNodes[i].style.display = "none";
@@ -115,7 +129,7 @@
         }
         function getNext() {
             if(!ans) {
-                alert("请翻转一张纸牌");
+                swal("请翻转一张纸牌");
                 return;
             }
             let ans_list = [];
@@ -133,9 +147,39 @@
             ans_lists = JSON.stringify(ans_list);
 
             {#alert("ans_list: " + ans_lists);#}
-            window.location = "{% url 'data_note' %}?ans=" + ans_lists + "&&type={{ type }}";
+            window.location = "{% url 'data_note' %}?ans=" + ans_lists + "&&type={{ type }}&&is_cheat=" + is_cheat;
         }
 
+        document.onkeydown = function (e) {//键盘按键控制
+            e = e || window.event;
+            if ((e.ctrlKey && e.keyCode == 82) || //ctrl+R
+                e.keyCode == 116) {//F5刷新，禁止
+                is_cheat=1;
+                return false
+            }
+        }
 
+    </script>
+    <script>
+        $(function() {
+        　　if (window.history && window.history.pushState) {
+            　　$(window).on('popstate', function () {
+            　　window.history.pushState('forward', null, '#');
+            　　window.history.forward(1);
+            　　});
+        　　}
+        　　window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+        　　window.history.forward(1);
+    　　})
+
+
+    </script>
+
+    <script>
+        window.addEventListener("popstate", function(e){
+            swal("can't come back!");//根据自己的需求实现自己的功能
+            console.log(e);
+            e.preventDefault();
+        }, false);
     </script>
 {% endblock %}

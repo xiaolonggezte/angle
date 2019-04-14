@@ -15,3 +15,4 @@ class DataModel(models.Model):
     marks = models.CharField(max_length=200, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+    is_cheat = models.BooleanField(default=False)

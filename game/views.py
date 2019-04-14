@@ -44,15 +44,19 @@ def poker_distribution(request):
 def data_note(request):
     group_type = request.GET.get('type')
     ans = request.GET.get('ans')
+    is_cheat = request.GET.get('is_cheat')
     return render(request, 'data_note.html', {
         'type': int(group_type) if group_type else 1,
-        'ans': ans
+        'ans': ans,
+        'is_cheat': is_cheat,
     })
 
 
 @csrf_exempt
 def update_db(request):
     flag = request.POST.get('flag')
+    is_cheat = request.POST.get('is_cheat')
+    is_cheat = int(is_cheat)
     try:
         DataModel.objects.create(
             ip=request.POST.get('ip'),
@@ -60,6 +64,7 @@ def update_db(request):
             ans=request.POST.get('ans'),
             flag=True if flag == 'true' else False,
             input=request.POST.get('input'),
+            is_cheat=True if is_cheat else False,
         )
     except:
         return HttpResponse(content='failed')

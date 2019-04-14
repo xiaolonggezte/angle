@@ -17,6 +17,7 @@
                 <th>IP</th>
                 <th>创建时间</th>
                 <th>组别</th>
+                <th>是否作弊</th>
                 <th>第一次翻牌结果</th>
                 <th>第二次翻牌结果</th>
                 <th>第三次翻牌结果</th>
@@ -32,6 +33,9 @@
                     <td>{{ data.create_at |date:"Y-m-d H:i:s" }}</td>
                     <td>
                         第{{ data.type }}组
+                    </td>
+                    <td>
+                        {{ data.is_cheat }}
                     </td>
                 </tr>
 

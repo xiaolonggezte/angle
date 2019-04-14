@@ -98,5 +98,11 @@
             window.location = "{% url 'get_ans' %}?type={{ type }}";
         }
     </script>
+    <script>
+        $(function() {
+            let refer = document.referrer;
+            console.log(refer);
+        })
+    </script>
 
 {% endblock %}

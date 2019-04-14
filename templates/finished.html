@@ -37,8 +37,29 @@
 {% endblock %}
 
 {% block js %}
+    <link rel="stylesheet" type="text/css" href="{% static 'sweetalert/css/sweetalert.css' %}">
+    <script type="text/javascript" src="{% static 'sweetalert/js/sweetalert.js' %}"></script>
     <script>
+        $(function() {
+        　　if (window.history && window.history.pushState) {
+            　　$(window).on('popstate', function () {
+            　　window.history.pushState('forward', null, '#');
+            　　window.history.forward(1);
+            　　});
+        　　}
+        　　window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+        　　window.history.forward(1);
+    　　})
 
+
+    </script>
+
+    <script>
+        window.addEventListener("popstate", function(e){
+            swal("can't come back!");//根据自己的需求实现自己的功能
+            console.log(e);
+            e.preventDefault();
+        }, false)
     </script>
 
 {% endblock %}
