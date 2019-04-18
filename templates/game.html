@@ -61,6 +61,7 @@
 {% endblock %}
 {% block js %}
     <script src="{% static 'deck-of-cards/dist/deck.js' %}"></script>
+    <script src="{% static 'deck-of-cards/dist/deck2.js' %}"></script>
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'sweetalert/css/sweetalert.css' %}">
     <script type="text/javascript" src="{% static 'sweetalert/js/sweetalert.js' %}"></script>
@@ -78,6 +79,8 @@
                 deck.shuffle();
                 setTimeout(myContainerShow, 1000);
                 deck.poker();
+                {#let deck2 = Deck2();#}
+                {#deck2.mount(document.getElementById("container"));#}
             }, 8000);
             //检测是否刷新。监测是否作弊
             if (window.performance) {

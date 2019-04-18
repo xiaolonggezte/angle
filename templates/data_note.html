@@ -71,7 +71,7 @@
 
                                 <div class="input-group" onclick="solve()" style="color: black" id="addition">
                                     <span class="input-group-addon" align="left" id="sub" style="color: black">
-                                        <input type="checkbox" style="zoom: 200%">
+                                        <input type="checkbox" style="zoom: 200%" id="checkBox1">
                                         <font size="10">
                                         {% if type == 2 %}
                                             +
@@ -231,11 +231,13 @@
         function solve() {
             is_checked = !is_checked;
             if(is_checked) {
+                document.getElementById("checkBox1").checked = true;
                 document.getElementById("pointIn").disabled = "disabled";
                 document.getElementById("addition").style.color = "red";
                 document.getElementById("sub").style.color = "red";
 
             } else {
+                document.getElementById("checkBox1").checked = false;
                 document.getElementById("pointIn").disabled = "";
                 document.getElementById("addition").style.color = "black";
                 document.getElementById("sub").style.color = "black";
