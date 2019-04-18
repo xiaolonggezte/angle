@@ -389,6 +389,11 @@ var Deck2 = (function () {
     var transform = prefix('transform');
 
     var value = i % 13 + 1;
+    if(value % 2) {
+      value = (value + 1) / 2;
+    } else {
+      value = value / 2;
+    }
     var name = value === 1 ? 'A' : value === 11 ? 'J' : value === 12 ? 'Q' : value === 13 ? 'K' : value;
     var suit = (i / 13 | 0) + 1;
     var suitName = SuitName(suit);

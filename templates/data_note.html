@@ -69,7 +69,7 @@
                     <div class="col-md-4 col-md-offset-4">
                         <div class="panel panel-default">
 
-                                <div class="input-group" onclick="solve()" style="color: black" id="addition">
+                                <div class="input-group" style="color: black" id="addition">
                                     <span class="input-group-addon" align="left" id="sub" style="color: black">
                                         <input type="checkbox" style="zoom: 200%" id="checkBox1">
                                         <font size="10">
@@ -228,25 +228,27 @@
             }
         })
         let is_checked = false;
-        function solve() {
-            is_checked = !is_checked;
-            if(is_checked) {
-                document.getElementById("checkBox1").checked = true;
-                document.getElementById("pointIn").disabled = "disabled";
-                document.getElementById("addition").style.color = "red";
-                document.getElementById("sub").style.color = "red";
-
-            } else {
-                document.getElementById("checkBox1").checked = false;
-                document.getElementById("pointIn").disabled = "";
-                document.getElementById("addition").style.color = "black";
-                document.getElementById("sub").style.color = "black";
-
-            }
-
-        }
+        {#function solve() {#}
+        {#    is_checked = !is_checked;#}
+        {#    if(is_checked) {#}
+        {#        document.getElementById("checkBox1").checked = true;#}
+        {#        document.getElementById("pointIn").disabled = "disabled";#}
+        {#        document.getElementById("addition").style.color = "red";#}
+        {#        document.getElementById("sub").style.color = "red";#}
+        {##}
+        {#    } else {#}
+        {#        document.getElementById("checkBox1").checked = false;#}
+        {#        document.getElementById("pointIn").disabled = "";#}
+        {#        document.getElementById("addition").style.color = "black";#}
+        {#        document.getElementById("sub").style.color = "black";#}
+        {##}
+        {#    }#}
+        {##}
+        {#}#}
         function getNext() {
             document.getElementById("main_button").disabled = "disabled";
+            is_checked = $('#checkBox1').is(':checked');
+            console.log("is_checked: " + is_checked);
             if(data.length === 0 && !is_checked) {
                 document.getElementById("main_button").disabled = "";
                 swal("信息输入错误");
@@ -261,6 +263,7 @@
                     return;
                 }
             }
+
             console.log("ip : " + ip + ":" + innerIP);
             console.log("ans: " + "{{ ans }}");
             console.log("is_checked: " + is_checked);
@@ -308,5 +311,16 @@
             console.log(e);
             e.preventDefault();
         }, false);
+    </script>
+    <script>
+        $("#checkBox1").change(function() {
+
+            let flag = $("#checkBox1").is(":checked");
+            if(flag) {
+                document.getElementById("pointIn").disabled = "disabled";
+            } else {
+                document.getElementById("pointIn").disabled = "";
+            }
+        })
     </script>
 {% endblock %}
