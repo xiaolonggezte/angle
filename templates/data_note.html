@@ -54,9 +54,24 @@
                                 </span>
                                 <input type="text" id="pointIn" class="form-control" placeholder="翻牌点数" style='font-size:20px; height: 62px; width: 100%'>
                             </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panel-body">
+                <div clas="row">
+
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="panel panel-default">
                             {% if type == 2 or type == 4 %}
                                 <div class="input-group" onclick="solve()" style="color: black" id="addition">
                                     <span class="input-group-addon" align="left" id="sub" style="color: black">
+                                        <input type="checkbox" style="zoom: 200%">
                                         <font size="10">
                                         {% if type == 2 %}
                                             +
