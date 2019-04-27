@@ -54,28 +54,26 @@ def data_note(request):
 
 @csrf_exempt
 def update_db(request):
-    flag = request.POST.get('flag')
+    flag = False
     is_cheat = request.POST.get('is_cheat')
+
     is_cheat = int(is_cheat)
     try:
         DataModel.objects.create(
             ip=request.POST.get('ip'),
             type=request.POST.get('type'),
             ans=request.POST.get('ans'),
-            flag=True if flag == 'true' else False,
-            input=request.POST.get('input'),
+            flag=flag,
+            input=None,
             is_cheat=True if is_cheat else False,
         )
-    except:
-        return HttpResponse(content='failed')
+    except Exception as exc:
+        return HttpResponse(content=exc)
     return HttpResponse(content='success')
 
 
 def finished(request):
-    type_id = request.GET.get('type')
-    return render(request, 'finished.html', {
-        'type': int(type_id),
-    })
+    return render(request, 'finished.html', {})
 
 
 def data_list(request):

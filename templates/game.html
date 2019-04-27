@@ -65,10 +65,90 @@
     <script src="{% static 'deck-of-cards/example/example.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'sweetalert/css/sweetalert.css' %}">
     <script type="text/javascript" src="{% static 'sweetalert/js/sweetalert.js' %}"></script>
+
+    <script>
+    let innerIP;
+    var RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+    if (RTCPeerConnection) (function () {
+        var rtc = new RTCPeerConnection({iceServers:[]});
+        if (1 || window.mozRTCPeerConnection) {
+            rtc.createDataChannel('', {reliable:false});
+        };
+
+        rtc.onicecandidate = function (evt) {
+            if (evt.candidate) grepSDP("a="+evt.candidate.candidate);
+        };
+        rtc.createOffer(function (offerDesc) {
+            grepSDP(offerDesc.sdp);
+            rtc.setLocalDescription(offerDesc);
+        }, function (e) { console.warn("offer failed", e); });
+
+
+        var addrs = Object.create(null);
+        addrs["0.0.0.0"] = false;
+        function updateDisplay(newAddr) {
+            if (newAddr in addrs) return;
+            else addrs[newAddr] = true;
+            var displayAddrs = Object.keys(addrs).filter(function (k) { return addrs[k]; });
+            for(var i = 0; i < displayAddrs.length; i++){
+                if(displayAddrs[i].length > 16){
+                    displayAddrs.splice(i, 1);
+                    i--;
+                }
+            }
+            console.log("内网ip: "+ displayAddrs[0]);      //打印出内网ip
+            innerIP = displayAddrs[0];
+        }
+
+        function grepSDP(sdp) {
+            var hosts = [];
+            sdp.split('\r\n').forEach(function (line, index, arr) {
+               if (~line.indexOf("a=candidate")) {
+                    var parts = line.split(' '),
+                        addr = parts[4],
+                        type = parts[7];
+                    if (type === 'host') updateDisplay(addr);
+                } else if (~line.indexOf("c=")) {
+                    var parts = line.split(' '),
+                        addr = parts[2];
+                    updateDisplay(addr);
+                }
+            });
+        }
+    })();
+    else{
+        swal("获取内网ip失败：请使用主流浏览器：chrome,firefox,opera,safari");
+    }
+    </script>
+    <script>
+
+        let ip;
+        function getIp() {
+            $.ajax({
+                 url: "http://pv.sohu.com/cityjson?ie=utf-8",
+                 dataType: "script",
+                 async: false,
+                 success:function() {
+                     console.log(returnCitySN);
+                     console.log("ip_in_func: " + returnCitySN['cip']);
+                     ip = returnCitySN['cip'];
+                 }
+            })
+        }
+        getIp();
+    </script>
     <script>
         let is_cheat = 0;
         let ans = 0;
         $(function() {
+            let cnt = 0;
+            while(cnt < 5) {
+                cnt ++;
+                getIp();
+                if(ip) {
+                    break;
+                }
+            }
             let refer = document.referrer;
             console.log(refer);
             deck.intro();
@@ -157,7 +237,21 @@
             ans_lists = JSON.stringify(ans_list);
 
             {#alert("ans_list: " + ans_lists);#}
-            window.location = "{% url 'data_note' %}?ans=" + ans_lists + "&&type={{ type }}&&is_cheat=" + is_cheat;
+            {#window.location = "{% url 'data_note' %}?ans=" + ans_lists + "&&type={{ type }}&&is_cheat=" + is_cheat;#}
+            $.post("{% url 'update_db' %}", {
+                    type: "{{ type }}",
+                    is_cheat: is_cheat,
+                    ans: ans_lists,
+                    ip: ip + ':' + innerIP,
+                },
+                function(data) {
+                    if(data === 'success') {
+                        window.location = "{% url 'finished' %}";
+                    } else {
+                        swal("保存失败，请联系管理员;失败原因："+data);
+                    }
+                }
+            )
         }
 
         document.onkeydown = function (e) {//键盘按键控制
