@@ -93,4 +93,7 @@ def alter_mask(request):
     return HttpResponse(content='success')
 
 
+def love_show(request):
+    return render(request, 'love.html', {})
+
 
