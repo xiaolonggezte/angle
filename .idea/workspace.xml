@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f0e94fd-62ea-48b5-8bcd-7eb886d5d64d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/default_dev.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/functions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/functions_dev.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/garden.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/garden_dev.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/love.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angle/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/angle/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="5f0e94fd-62ea-48b5-8bcd-7eb886d5d64d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +55,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/love.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
+            <state relative-caret-position="-109">
               <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -353,18 +340,17 @@
       <workItem from="1556091038269" duration="9000" />
       <workItem from="1556359906940" duration="3119000" />
       <workItem from="1556437384395" duration="82000" />
-      <workItem from="1556457041027" duration="603000" />
+      <workItem from="1556457041027" duration="1143000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133091000" />
+    <option name="totallyTimeSpent" value="133631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15758547" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15758547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -378,7 +364,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3410042" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3410042" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3294979" />
       <window_info anchor="bottom" id="Statistic" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -727,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/love.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
+        <state relative-caret-position="-109">
           <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
